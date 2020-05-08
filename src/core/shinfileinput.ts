@@ -101,7 +101,7 @@ export  default class shinfileinput {
         
     }
     protected startReadFile(file:File,options:Set<OUTOUTTYPE>):Promise<any []>{
-        console.log('startload');
+        //console.log('startload');
         const readfile =(option:OUTOUTTYPE)=>{
            
             return new Promise((ros,jet)=>{
@@ -123,13 +123,16 @@ export  default class shinfileinput {
         }
         return new Promise( (ros,jet)=>{
             let arr:any [] =[];
-            options.forEach(async (option)=>{
-                console.log({option});
-                let result:any = await readfile(option);
-                
-                arr.push(result);
+            options.forEach( (option)=>{
+               
+                //let result:any = await readfile(option);
+                arr.push(readfile(option));
+                //arr.push(result);
             })
-            ros(arr);
+            Promise.all(arr).then((res)=>{
+                ros(res);
+            })
+            
             
         })
     }
