@@ -1,7 +1,7 @@
 # 🚀 IT IS A JS MODULE USED IN WEB BROWER
 
 select or access a local file without uploading file or files to remote.
-with this api,you can access a or some local files ,and get formate of ```base64/arraybuffer/text``` of these files;
+with this api,you can access one or some local files ,and get formate of ```base64/arraybuffer/text``` of files you have selected
 
 HOW TO INSTALL
 ```
@@ -50,7 +50,7 @@ OUTOUTTYPE has three types.
 + BASE64
 + TEXT
 + BUFFRR
-means you will get different kinds of content of these files;
+means you will get different kinds of format of these files;
 
 ```typescript
 import shinfileinput,{OUTOUTTYPE} from "shinfileinput";
@@ -69,4 +69,18 @@ inputer.start("*",[OUTOUTTYPE.BASE64,OUTOUTTYPE.BUFFER]).then(res=>{
 
 ```
 
+EXAMPLE:
+choose a image from local and put it into a Image Element
 
+```javascript
+import shinfileinput,{OUTOUTTYPE} from "shinfileinput";
+const inputer = new shinfileinput();
+inputer.start("image/gif, image/jpeg",[OUTOUTTYPE.BASE64]).then(res=>{
+    //console.log({res});
+    let {data} = res[0];
+    const image = new Image();
+    image.src = data;
+    document.body.appendChild(image);
+}
+
+```
