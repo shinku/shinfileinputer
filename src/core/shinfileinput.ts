@@ -1,7 +1,7 @@
 export enum OUTOUTTYPE {
     BASE64="base64",
     TEXT="text",
-    BUFFRR="arraybuffer"
+    BUFFER="arraybuffer"
 }
 export  default class shinfileinput {
     private input:HTMLInputElement;
@@ -114,8 +114,9 @@ export  default class shinfileinput {
                 };
                 switch(option){
                     case OUTOUTTYPE.BASE64:filereader.readAsDataURL(file);break;
-                    case OUTOUTTYPE.BUFFRR:filereader.readAsArrayBuffer(file);break;
+                    case OUTOUTTYPE.BUFFER:filereader.readAsArrayBuffer(file);break;
                     case OUTOUTTYPE.TEXT:filereader.readAsText(file);break;
+                    default :ros({data:null,type:option,msg:"outputtype not exists"});break;
                 }
                 
             })
