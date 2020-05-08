@@ -14,7 +14,7 @@ import shinfileinput,{OUTOUTTYPE} from "shinfileinput";
 const inputer = new shinfileinput();
 inputer.start("*",[OUTOUTTYPE.BASE64]).then(res=>{
     console.log({res});
-    //you will get a array,
+    //you will get a array of base64, 
 }
 ```
 FUNCTIONS
@@ -38,9 +38,10 @@ outputoption | Array | default is ```["base64"]``` or ```[OUTOUTTYPE.BASE64]```|
 ```typescript
 setMultiple(val:Boolean):shinfileinput
 ```
-if you want to change Multiple to single
+you wann to change single file choosen to multiple
 ```typescript
-inputer.setMultiple(false).start("*“).then(......)
+
+inputer.setMultiple(true).start("*“).then(......)
 ```
 
 
