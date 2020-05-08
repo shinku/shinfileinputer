@@ -9,7 +9,7 @@ yarn add shinfileinput
 ```
 HOW TO USE
 
-```
+```typescript
 import shinfileinput,{OUTOUTTYPE} from "shinfileinput";
 const inputer = new shinfileinput();
 inputer.start("*",[OUTOUTTYPE.BASE64]).then(res=>{
@@ -18,7 +18,7 @@ inputer.start("*",[OUTOUTTYPE.BASE64]).then(res=>{
 }
 ```
 FUNCTIONS
-```
+```typescript
 construncor(ismultiple:Boolean=false){
     //
 }
@@ -28,18 +28,18 @@ params | type |  ps|
 -|-|-
 ismultiple | boolean | choose multiple files or just single file.default is false |
 
-```javascript
+```typescript
 start(accepts:string,outputoption:Array<string>):Promise<T>
 ```
 params | type |  ps|  
 -|-|-
 accepts | string | accepts of a input,such as ```"\*"``` or ```"\*.jppg|*.png"```|
 outputoption | Array | default is ```["base64"]``` or ```[OUTOUTTYPE.BASE64]```|
-```javascript
+```typescript
 setMultiple(val:Boolean):shinfileinput
 ```
 if you want to change Multiple to single
-```
+```typescript
 inputer.setMultiple(false).start("*“).then(......)
 ```
 
@@ -51,7 +51,7 @@ OUTOUTTYPE has three types.
 + BUFFRR
 means you will get different kinds of content of these files;
 
-```javascript
+```typescript
 import shinfileinput,{OUTOUTTYPE} from "shinfileinput";
 const inputer = new shinfileinput();
 inputer.start("*",[OUTOUTTYPE.BASE64]).then(res=>{
