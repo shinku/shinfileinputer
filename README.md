@@ -4,8 +4,12 @@ select or access a local file without uploading file or files to remote.
 with this api,you can access one or some local files ,and get formate of ```base64/arraybuffer/text``` of files you have selected
 
 HOW TO INSTALL
-```
+```javascript
 yarn add shinfileinput
+
+OR
+
+yarn add git+https://github.com/shinku/shinfileinputer.git
 ```
 HOW TO USE
 
@@ -57,14 +61,14 @@ import shinfileinput,{OUTOUTTYPE} from "shinfileinput";
 const inputer = new shinfileinput();
 inputer.start("*",[OUTOUTTYPE.BASE64]).then(res=>{
     console.log({res});
-    //[[{data:"....",type:"base64"}],......]
-    //get base64content
+    //[{file:File,datas:[{data:xxxxxxx,type:"base64"}]}]
+    //get base64content and also you will get the file
 }
 ....
 inputer.start("*",[OUTOUTTYPE.BASE64,OUTOUTTYPE.BUFFER]).then(res=>{
     console.log({res});
-    //[[{data:"....",type:"base64"},{data:"....",type:"arraybuffer"}}],......]
-    //get base64 content and ArrayBuffer content
+    //  //[{file:File,datas:[{data:xxxxxxx,type:"base64"},{data:xxxxxxx,type:"arraybuffer"}]}]
+    //get base64content and also you will get the file
 }
 
 ```
@@ -77,9 +81,9 @@ import shinfileinput,{OUTOUTTYPE} from "shinfileinput";
 const inputer = new shinfileinput();
 inputer.start("image/gif, image/jpeg",[OUTOUTTYPE.BASE64]).then(res=>{
     //console.log({res});
-    let {data} = res[0][0];
+    let {datas} = res[0];
     const image = new Image();
-    image.src = data;
+    image.src = datas[0]['data'];
     document.body.appendChild(image);
 }
 

@@ -66,7 +66,6 @@ export  default class shinfileinput {
         console.warn("this params is not allowed be setted");
     }
     protected fileSelect(e:InputEvent){
-     
         let filedatas:FileList=this.input.files;
         this._files = this.input.files;
         //如果重复提交同一个文件，不用再次读取。直接返回即可。
@@ -83,22 +82,18 @@ export  default class shinfileinput {
             }
         }
         Promise.all(promises).then((res:{}[])=>{
-           
             if(this.callback){
-                let {_files}  = this;
-                this.callback.call(null,res,_files);
+               
+                this.callback.call(null,res);
             };
             this.initInput();
         })
-        
-        
     }
     protected startReadFile(file:File,options:Set<OUTOUTTYPE>):Promise<any []>{
         //console.log('startload');
         const readfile =(option:OUTOUTTYPE)=>{
             return new Promise((ros,jet)=>{
                 let filereader:FileReader = new FileReader();
-          
                 filereader.onload = (e:{})=>{
                     ros({
                         data:filereader.result,type:option
@@ -109,23 +104,17 @@ export  default class shinfileinput {
                     case OUTOUTTYPE.BUFFER:filereader.readAsArrayBuffer(file);break;
                     case OUTOUTTYPE.TEXT:filereader.readAsText(file);break;
                     default :ros({data:null,type:option,msg:"outputtype not exists"});break;
-                }
-                
+                }  
             })
-            
         }
         return new Promise( (ros,jet)=>{
             let arr:any [] =[];
             options.forEach( (option)=>{
-          
                 arr.push(readfile(option));
-
             })
             Promise.all(arr).then((res)=>{
-                ros(res);
-            })
-            
-            
+                ros({file,datas:res} as any);
+            })  
         })
     }
     protected loadFile(filters:string,callback:Function,errorhandle:Function)
