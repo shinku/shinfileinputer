@@ -49,7 +49,7 @@ inputer.setMultiple(true).start("*“).then(......)
 OUTOUTTYPE has three types.
 + BASE64
 + TEXT
-+ BUFFRR
++ BUFFER
 means you will get different kinds of format of these files;
 
 ```typescript
