@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "1.0.1",
   "name": "shinfileinputer",
   "author": "shin <jsgxx00@gmail.com>",
   "description": "select and access a local file without upload file or files to remote",
