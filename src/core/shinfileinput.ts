@@ -13,6 +13,7 @@ export  default class shinfileinput {
     private accept:string;
     private _ismultiple:Boolean=false;
     private outputoption:OUTOUTTYPE [];
+    private _files:FileList;
     constructor(ismultiple:Boolean=false){
         
         this._ismultiple = ismultiple;
@@ -70,16 +71,21 @@ export  default class shinfileinput {
         this.ismultiple = val;
         return this;
     }
+    public get files():FileList{
+        return this._files;
+    }
+    public set files(val:FileList){
+        console.warn("this params is not allowed be setted");
+    }
     protected fileSelect(e:InputEvent){
         //var target:HTMLInputElement= e.target || window.event.srcElement;
         let filedatas:FileList=this.input.files;
-        
+        this._files = this.input.files;
         //如果重复提交同一个文件，不用再次读取。直接返回即可。
         let outputset:Set<OUTOUTTYPE> = new Set(this.outputoption);
         let promises:Promise<any []> [] =[];
         for(let i:number=0;i<filedatas.length;i++){
             let file:File = filedatas[i];
-            
             if(!file){
                 console.log('没有选择文件');
                 return
@@ -125,10 +131,9 @@ export  default class shinfileinput {
         return new Promise( (ros,jet)=>{
             let arr:any [] =[];
             options.forEach( (option)=>{
-               
-                //let result:any = await readfile(option);
+          
                 arr.push(readfile(option));
-                //arr.push(result);
+
             })
             Promise.all(arr).then((res)=>{
                 ros(res);
