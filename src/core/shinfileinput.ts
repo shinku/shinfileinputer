@@ -99,6 +99,7 @@ export  default class shinfileinput {
         Promise.all(promises).then((res:{}[])=>{
            
             if(this.callback){
+                console.log(this._files);
                 this.callback.call(null,res,this._files);
             };
             this.initInput();
