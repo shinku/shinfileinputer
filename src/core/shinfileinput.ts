@@ -14,6 +14,7 @@ export  default class shinfileinput {
     private _ismultiple:Boolean=false;
     private outputoption:OUTOUTTYPE [];
     private _files:FileList;
+    private _limitSize:number=50*1024*100
     constructor(ismultiple:Boolean=false){
         
         this._ismultiple = ismultiple;
@@ -43,6 +44,10 @@ export  default class shinfileinput {
         this.input.onchange=(e:InputEvent)=>{
             this.fileSelect(e);
         };
+    }
+    public setLimitSize(size:number):shinfileinput{
+        this._limitSize = size;
+        return this;
     }
     public get ismultiple():Boolean{
         return this._ismultiple
@@ -91,6 +96,9 @@ export  default class shinfileinput {
     }
     protected startReadFile(file:File,options:Set<OUTOUTTYPE>):Promise<any []>{
         //console.log('startload');
+        if(file.size > this._limitSize){
+            return Promise.resolve( {data:null,msg:"size outof limited"} as any);
+        }
         const readfile =(option:OUTOUTTYPE)=>{
             return new Promise((ros,jet)=>{
                 let filereader:FileReader = new FileReader();
