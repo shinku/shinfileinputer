@@ -57,7 +57,7 @@ import shinfileinput,{OUTOUTTYPE} from "shinfileinput";
 const inputer = new shinfileinput();
 inputer.start("*",[OUTOUTTYPE.BASE64]).then(res=>{
     console.log({res});
-    //[{data:"....",type:"base64"},......]
+    //[[{data:"....",type:"base64"}],......]
     //get base64content
 }
 ....
@@ -77,7 +77,7 @@ import shinfileinput,{OUTOUTTYPE} from "shinfileinput";
 const inputer = new shinfileinput();
 inputer.start("image/gif, image/jpeg",[OUTOUTTYPE.BASE64]).then(res=>{
     //console.log({res});
-    let {data} = res[0];
+    let {data} = res[0][0];
     const image = new Image();
     image.src = data;
     document.body.appendChild(image);
