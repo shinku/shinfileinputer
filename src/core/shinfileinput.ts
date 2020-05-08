@@ -22,24 +22,12 @@ export  default class shinfileinput {
         if(window.hasOwnProperty('File') && window.hasOwnProperty('FileReader') && window.hasOwnProperty('FileList') && window.hasOwnProperty('Blob'))
         {
             console.log("Great success! All the File APIs are supported.");
-            /*this.file = new FileReader();
-            this.file.onload =(e:{})=>{
-                //console.log('uploaded');
-                //this.dispatchEvent(new MF_EVENT.Event('fileloaded',e.target.result));
-                //初始化input标签，
-                //this.initInput();
-                if(this.callback){
-                    this.callback.call(null,)
-                }
-            }*/
         } else {
             console.log('The File APIs are not fully supported in this browser.');
             alert("你使用的浏览器不支持文件本地上传。请更新你的浏览器");
             //return;
         };
-       
         //初始化input标签，
-       
     }
     protected initInput()
     {
@@ -78,7 +66,7 @@ export  default class shinfileinput {
         console.warn("this params is not allowed be setted");
     }
     protected fileSelect(e:InputEvent){
-        //var target:HTMLInputElement= e.target || window.event.srcElement;
+     
         let filedatas:FileList=this.input.files;
         this._files = this.input.files;
         //如果重复提交同一个文件，不用再次读取。直接返回即可。
@@ -91,16 +79,14 @@ export  default class shinfileinput {
                 return
             }
             else{
-                //this.file.readAsDataURL(file);
-                //console.log('载入VFILE资源');
                 promises.push(this.startReadFile(file,outputset));
             }
         }
         Promise.all(promises).then((res:{}[])=>{
            
             if(this.callback){
-                console.log(this._files);
-                this.callback.call(null,res,this._files);
+                let {_files}  = this;
+                this.callback.call(null,res,_files);
             };
             this.initInput();
         })
@@ -110,7 +96,6 @@ export  default class shinfileinput {
     protected startReadFile(file:File,options:Set<OUTOUTTYPE>):Promise<any []>{
         //console.log('startload');
         const readfile =(option:OUTOUTTYPE)=>{
-           
             return new Promise((ros,jet)=>{
                 let filereader:FileReader = new FileReader();
           
