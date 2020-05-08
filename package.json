@@ -1,12 +1,15 @@
 {
   "version": "2.0.0",
   "name": "shinfileinputer",
-  "author": "shin",
+  "author": "shin <jsgxx00@gmail.com>",
   "description": "select and access a local file without upload file or files to remote",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "start": "cross-env NODE_ENV=development webpack-dev-server"
   },
+  "keywords": [
+    "shincat","file","input","browser"
+  ],
   "main": "dist/index.js",
   "devDependencies": {
     "html-webpack-plugin": "^4.3.0",
@@ -25,6 +28,7 @@
     "type": "git",
     "url": ""
   },
+  
   "license": "ISC",
   "dependencies": {
   
