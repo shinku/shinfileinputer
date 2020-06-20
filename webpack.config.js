@@ -36,7 +36,7 @@ const getPlugins =()=>{
 
 console.log(getPlugins());
 module.exports = {
-	mode: 'development',
+	mode: 'production',
 
 	entry: {
 		index: './src/index.ts'
@@ -46,7 +46,7 @@ module.exports = {
 		filename: '[name].js',
 		path: path.resolve(__dirname, 'dist'),
 		libraryTarget:"umd",
-		library:"shinfileinput"
+		library:"shinfileinputer"
 	},
 
 	plugins: getPlugins(),
