@@ -5,7 +5,7 @@ with this api,you can access one or some local files ,and get formate of ```base
 
 HOW TO INSTALL
 ```javascript
-yarn add shinfileinput
+yarn add shinfileinputer
 
 OR
 
@@ -14,8 +14,8 @@ yarn add git+https://github.com/shinku/shinfileinputer.git
 HOW TO USE
 
 ```typescript
-import shinfileinput,{OUTOUTTYPE} from "shinfileinput";
-const inputer = new shinfileinput();
+import shinfileinputer,{OUTOUTTYPE} from "shinfileinputer";
+const inputer = new shinfileinputer();
 inputer.start("*",[OUTOUTTYPE.BASE64]).then(res=>{
     console.log({res});
     //you will get a array of base64, 
@@ -57,8 +57,8 @@ OUTOUTTYPE has three types.
 means you will get different kinds of format of these files;
 
 ```typescript
-import shinfileinput,{OUTOUTTYPE} from "shinfileinput";
-const inputer = new shinfileinput();
+import shinfileinput,{OUTOUTTYPE} from "shinfileinputer";
+const inputer = new shinfileinputer();
 inputer.start("*",[OUTOUTTYPE.BASE64]).then(res=>{
     console.log({res});
     //[{file:File,datas:[{data:xxxxxxx,type:"base64"}]}]
@@ -77,7 +77,7 @@ EXAMPLE:
 choose a image from local and put it into a Image Element
 
 ```javascript
-import shinfileinput,{OUTOUTTYPE} from "shinfileinput";
+import shinfileinput,{OUTOUTTYPE} from "shinfileinputer";
 const inputer = new shinfileinput();
 inputer.start("image/gif, image/jpeg",[OUTOUTTYPE.BASE64]).then(res=>{
     //console.log({res});
